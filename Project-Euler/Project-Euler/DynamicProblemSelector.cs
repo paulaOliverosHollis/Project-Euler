@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace Project_Euler
 {
-    class DynamicProblemPrinter
+    public static class DynamicProblemSelector
     {
         public static void PrintProblem(int problemNumber, Type objectType)
         {
             var method = objectType.GetMethod($"Problem{problemNumber}");
 
-            method.Invoke(null, null);
+            if (method != null)
+            {
+                method.Invoke(null, null);
+            }
+            else
+            {
+                Console.WriteLine($"Problem {problemNumber} is not a valid selection. Please try again!");
+            }
         }
 
         public static void PrintAllProblems()
