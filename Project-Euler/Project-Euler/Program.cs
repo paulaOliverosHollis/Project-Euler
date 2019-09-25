@@ -24,7 +24,7 @@ namespace Project_Euler
                 {
                     DynamicProblemSelector.PrintProblem(GetProblemNumber(), typeof(Problems));
                 }
-                else
+                else // User Chose to Quit
                 {
                     return;
                 }
