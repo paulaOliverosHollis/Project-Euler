@@ -29,6 +29,30 @@ namespace Project_Euler
         public static void Problem2()
         {
             Console.WriteLine("\n\t2) By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.");
+
+            int firstNum = 1;
+            int secondNum = 2;
+            int thirdNum;
+            int sum = 2;
+
+            while (true)
+            {
+                thirdNum = firstNum + secondNum;
+
+                if (thirdNum > 4000000)
+                {
+                    break;
+                }
+                else if (thirdNum % 2 == 0)
+                {
+                    sum += thirdNum;
+                }
+
+                firstNum = secondNum;
+                secondNum = thirdNum;
+            }
+
+            Console.WriteLine($"\n\tSolution: {sum}");
         }
     }
 }
