@@ -8,9 +8,9 @@ namespace Project_Euler
 {
     public static class Problems
     {
-        private static void Problem1()
+        public static void Problem1()
         {
-            Console.WriteLine("Problem: If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.");
+            Console.WriteLine("\n\t1) If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.");
 
             int sum = 0;
 
@@ -23,12 +23,12 @@ namespace Project_Euler
                 }
             }
 
-            Console.WriteLine($"Answer: {sum}");
+            Console.WriteLine($"\n\tSolution: {sum}");
         }
 
-        private static void Problem2()
+        public static void Problem2()
         {
-            Console.WriteLine("Problem: By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.");
+            Console.WriteLine("\n\t2) By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.");
         }
     }
 }

@@ -11,7 +11,24 @@ namespace Project_Euler
         static void Main()
         {
             PrintIntro();
-            PrintMenuOptions();//Eventually this method will not be called in main directly. This is for testing purposes.
+
+            while (true)
+            {
+                int userSelection = GetMenuSelection();
+
+                if (userSelection == 0)
+                {
+                    DynamicProblemSelector.PrintAllProblems();
+                }
+                else if (userSelection == 1)
+                {
+                    DynamicProblemSelector.PrintProblem(GetProblemNumber(), typeof(Problems));
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
 
         public static void PrintIntro()
@@ -20,19 +37,61 @@ namespace Project_Euler
             //Add a couple more lines, maybe?
         }
 
-        public static void PrintMenuOptions() //This method will be private once I write the method that will call it. blah blah
+        public static int GetMenuSelection()
+        {
+            PrintMenuOptions();
+
+            while (true)
+            {
+                string userSelection = Console.ReadLine().ToUpper();
+
+                if (!string.IsNullOrEmpty(userSelection) && userSelection.Length == 1)
+                {
+                    char menuSelection = userSelection[0];
+
+                    if (menuSelection == 'A')
+                    {
+                        return 0;
+                    }
+                    else if (menuSelection == 'S')
+                    {
+                        return 1;
+                    }
+                    else if (menuSelection == 'Q')
+                    {
+                        return 2;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("The option you entered is not valid. Please try again!");
+                    PrintMenuOptions();
+                }
+            }
+        }
+
+        private static void PrintMenuOptions()
         {
             Console.WriteLine("\n\n\tSelect One Of The Following Options:\n" +
                               "\n\tA - See All Problems and Solutions" +
-                              "\n\tB - See One Specific Problem and Solution" +
+                              "\n\tS - See One Specific Problem and Solution" +
                               "\n\tQ - Quit");
-
-            Console.ReadLine();
         }
 
-        private static bool IsMenuSelectionValid()
+        private static int GetProblemNumber()
         {
-            return false; // todito.
+            Console.Write("\nProblem Number: ");
+
+            bool isNumberConvertible = int.TryParse(Console.ReadLine(), out int problemNumber);
+
+            while (!isNumberConvertible)
+            {
+                Console.WriteLine("Please enter a valid number: ");
+
+                isNumberConvertible = int.TryParse(Console.ReadLine(), out problemNumber);
+            }
+
+            return problemNumber;
         }
     }
 }
