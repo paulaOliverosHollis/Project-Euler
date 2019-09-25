@@ -14,13 +14,13 @@ namespace Project_Euler
 
             while (true)
             {
-                int userSelection = GetMenuSelection();
+                MenuOptions userSelection = GetMenuSelection();
 
-                if (userSelection == 0)
+                if (userSelection == MenuOptions.A)
                 {
                     DynamicProblemSelector.PrintAllProblems();
                 }
-                else if (userSelection == 1)
+                else if (userSelection == MenuOptions.S)
                 {
                     DynamicProblemSelector.PrintProblem(GetProblemNumber(), typeof(Problems));
                 }
@@ -31,43 +31,49 @@ namespace Project_Euler
             }
         }
 
+        public enum MenuOptions { A, S, Q };
+
         public static void PrintIntro()
         {
             Console.WriteLine("\nWelcome To My Project Euler Repository!");
             //Add a couple more lines, maybe?
         }
 
-        public static int GetMenuSelection()
+        public static MenuOptions GetMenuSelection()
         {
-            PrintMenuOptions();
-
             while (true)
             {
-                string userSelection = Console.ReadLine().ToUpper();
+                PrintMenuOptions();
 
-                if (!string.IsNullOrEmpty(userSelection) && userSelection.Length == 1)
+                try
                 {
-                    char menuSelection = userSelection[0];
+                    string userSelection = Console.ReadLine()?.ToUpper();
 
-                    if (menuSelection == 'A')
+                    if (!string.IsNullOrWhiteSpace(userSelection) && userSelection.Length == 1)
                     {
-                        return 0;
-                    }
-                    else if (menuSelection == 'S')
-                    {
-                        return 1;
-                    }
-                    else if (menuSelection == 'Q')
-                    {
-                        return 2;
+                        char menuSelection = userSelection[0];
+
+                        if (menuSelection == 'A')
+                        {
+                            return MenuOptions.A;
+                        }
+                        else if (menuSelection == 'S')
+                        {
+                            return MenuOptions.S;
+                        }
+                        else if (menuSelection == 'Q')
+                        {
+                            return MenuOptions.Q;
+                        }
                     }
                 }
-                else
+                catch
                 {
-                    Console.WriteLine("The option you entered is not valid. Please try again!");
-                    PrintMenuOptions();
+                    // null exeption will be handled by the line below and by continuing the loop.
                 }
-            }
+
+                Console.WriteLine("The option you entered is not valid. Please try again!");
+            }               
         }
 
         private static void PrintMenuOptions()
