@@ -54,5 +54,56 @@ namespace Project_Euler
 
             Console.WriteLine($"\n\tSolution: {sum}");
         }
+
+
+        public static void Problem3()
+        {
+            Console.WriteLine("\n\t3) What is the largest prime factor of the number 600851475143 ?");
+
+            int smallestPrimeNumber = 2;
+            long biggestPrimeNumber = 600851475143;
+
+            while(true)
+            {
+                while (IsItDivisible(smallestPrimeNumber, biggestPrimeNumber))
+                {
+                    biggestPrimeNumber /= smallestPrimeNumber;                    
+                }
+                if (IsItPrime(biggestPrimeNumber))
+                {
+                    break;
+                }
+                else
+                {
+                    smallestPrimeNumber++;
+                }               
+            }          
+
+            Console.WriteLine($"\n\tSolution: {biggestPrimeNumber}");
+
+        }
+
+        //Helper method.
+        private static bool IsItDivisible(int smallestPrimeNumber, long biggestPrimeNumber)
+        {
+            return biggestPrimeNumber % smallestPrimeNumber == 0;
+        }
+
+        //Helper method.
+        private static bool IsItPrime(long biggestPrimeNumber)
+        {
+            double squareRoot = Math.Sqrt(biggestPrimeNumber);
+
+
+            for (int i = 2; i < squareRoot; i++)
+            {
+                if (IsItDivisible(i, biggestPrimeNumber))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
