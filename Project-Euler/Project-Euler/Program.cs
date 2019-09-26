@@ -8,23 +8,25 @@ namespace Project_Euler
 {
     class Program
     {
+        public enum MenuOptions { AllProblems, SelectProblem, Quit };
+
         static void Main()
         {
             PrintIntro();
 
             while (true)
             {
-                int userSelection = GetMenuSelection();
+                MenuOptions userSelection = GetMenuSelection();
 
-                if (userSelection == 0)
+                if (userSelection == MenuOptions.AllProblems)
                 {
                     DynamicProblemSelector.PrintAllProblems();
                 }
-                else if (userSelection == 1)
+                else if (userSelection == MenuOptions.SelectProblem)
                 {
                     DynamicProblemSelector.PrintProblem(GetProblemNumber(), typeof(Problems));
                 }
-                else
+                else // User Chose to Quit
                 {
                     return;
                 }
@@ -37,36 +39,33 @@ namespace Project_Euler
             //Add a couple more lines, maybe?
         }
 
-        public static int GetMenuSelection()
+        public static MenuOptions GetMenuSelection()
         {
-            PrintMenuOptions();
-
             while (true)
             {
-                string userSelection = Console.ReadLine().ToUpper();
+                PrintMenuOptions();
 
-                if (!string.IsNullOrEmpty(userSelection) && userSelection.Length == 1)
+                string userSelection = Console.ReadLine()?.ToUpper();
+
+                if (!string.IsNullOrWhiteSpace(userSelection) && userSelection.Length == 1)
                 {
                     char menuSelection = userSelection[0];
 
                     if (menuSelection == 'A')
                     {
-                        return 0;
+                        return MenuOptions.AllProblems;
                     }
                     else if (menuSelection == 'S')
                     {
-                        return 1;
+                        return MenuOptions.SelectProblem;
                     }
                     else if (menuSelection == 'Q')
                     {
-                        return 2;
+                        return MenuOptions.Quit;
                     }
                 }
-                else
-                {
-                    Console.WriteLine("The option you entered is not valid. Please try again!");
-                    PrintMenuOptions();
-                }
+
+                Console.WriteLine("The option you entered is not valid. Please try again!");
             }
         }
 
