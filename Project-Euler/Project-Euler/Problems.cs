@@ -86,8 +86,13 @@ namespace Project_Euler
         {
             Console.WriteLine("\n\t1)Find the largest palindrome made from the product of two 3 digit numbers.");
 
-            int biggestSum = 0;
+            int greatestSum = 0;
+            int currentNumber = 100;            
 
+            while(currentNumber < 1000)
+            {
+                int currentSum = currentNumber + ReverseOrder(currentNumber);
+            }
         }
 
         //Helper method.
@@ -127,5 +132,7 @@ namespace Project_Euler
 
             return int.Parse(reversedNumber);
         }
+
+        //Helper method.       
     }
 }
