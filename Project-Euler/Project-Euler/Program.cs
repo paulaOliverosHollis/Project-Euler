@@ -8,6 +8,8 @@ namespace Project_Euler
 {
     class Program
     {
+        public enum MenuOptions { AllProblems, SelectProblem, Quit };
+
         static void Main()
         {
             PrintIntro();
@@ -16,11 +18,11 @@ namespace Project_Euler
             {
                 MenuOptions userSelection = GetMenuSelection();
 
-                if (userSelection == MenuOptions.A)
+                if (userSelection == MenuOptions.AllProblems)
                 {
                     DynamicProblemSelector.PrintAllProblems();
                 }
-                else if (userSelection == MenuOptions.S)
+                else if (userSelection == MenuOptions.SelectProblem)
                 {
                     DynamicProblemSelector.PrintProblem(GetProblemNumber(), typeof(Problems));
                 }
@@ -30,8 +32,6 @@ namespace Project_Euler
                 }
             }
         }
-
-        public enum MenuOptions { A, S, Q };
 
         public static void PrintIntro()
         {
@@ -45,35 +45,28 @@ namespace Project_Euler
             {
                 PrintMenuOptions();
 
-                try
-                {
-                    string userSelection = Console.ReadLine()?.ToUpper();
+                string userSelection = Console.ReadLine()?.ToUpper();
 
-                    if (!string.IsNullOrWhiteSpace(userSelection) && userSelection.Length == 1)
+                if (!string.IsNullOrWhiteSpace(userSelection) && userSelection.Length == 1)
+                {
+                    char menuSelection = userSelection[0];
+
+                    if (menuSelection == 'A')
                     {
-                        char menuSelection = userSelection[0];
-
-                        if (menuSelection == 'A')
-                        {
-                            return MenuOptions.A;
-                        }
-                        else if (menuSelection == 'S')
-                        {
-                            return MenuOptions.S;
-                        }
-                        else if (menuSelection == 'Q')
-                        {
-                            return MenuOptions.Q;
-                        }
+                        return MenuOptions.AllProblems;
                     }
-                }
-                catch
-                {
-                    // null exeption will be handled by the line below and by continuing the loop.
+                    else if (menuSelection == 'S')
+                    {
+                        return MenuOptions.SelectProblem;
+                    }
+                    else if (menuSelection == 'Q')
+                    {
+                        return MenuOptions.Quit;
+                    }
                 }
 
                 Console.WriteLine("The option you entered is not valid. Please try again!");
-            }               
+            }
         }
 
         private static void PrintMenuOptions()
