@@ -18,7 +18,7 @@ namespace Project_Euler
             }
             else
             {
-                Console.WriteLine($"Problem {problemNumber} is not a valid selection. Please try again!");
+                Console.WriteLine($"Sorry, Problem {problemNumber} is not available. Please try another problem!");
             }
         }
 
