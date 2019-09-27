@@ -70,7 +70,7 @@ namespace Project_Euler
             for (int i = 0; i < initialValueSqrt; i++)
             {
                 // The numberToBeDivided is divided by the same diviser for as long as the number is divisible by that specific diviser.
-                while (IsItDivisible(diviser, numberToBeDivided))
+                while (numberToBeDivided % diviser == 0)
                 {
                     numberToBeDivided /= diviser;
                 }
@@ -87,18 +87,13 @@ namespace Project_Euler
             Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
         }
 
-        private static bool IsItDivisible(int diviser, long numberToBeDivided)
-        {
-            return numberToBeDivided % diviser == 0;
-        }
-
         private static bool IsItPrime(long number)
         {
             int squareRoot = (int)Math.Sqrt(number);
 
             for (int i = 2; i < squareRoot; i++)
             {
-                if (IsItDivisible(i, number))
+                if (number % i == 0)
                 {
                     return false;
                 }
@@ -153,23 +148,23 @@ namespace Project_Euler
 
         public static void Problem5()
         {
-            Console.WriteLine("\n\t5)What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?");            
+            Console.WriteLine("\n\t5)What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?");
 
-            for(int i = 20; i < int.MaxValue; i += 20)
+            for (int i = 20; i < int.MaxValue; i += 20)
             {
-                if(IsDivisibleFrom1To20(i))
+                if (IsDivisibleFrom1To20(i))
                 {
                     Console.WriteLine($"\n\tSolution: {i}");
                     return;
                 }
-            }           
+            }
         }
 
         private static bool IsDivisibleFrom1To20(int number)
         {
-            for(int i = 11; i < 21; i++)
+            for (int i = 11; i < 21; i++)
             {
-                if(number % i != 0)
+                if (number % i != 0)
                 {
                     return false;
                 }
