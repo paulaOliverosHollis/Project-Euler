@@ -82,6 +82,8 @@ namespace Project_Euler
 
                 // If the numberToBeDivided is not divisable by the current diviser anymore but it is not a prime number, we move onto the next diviser.
                 diviser++;
+
+                Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
             }
         }
 
@@ -112,14 +114,15 @@ namespace Project_Euler
             int currentProduct;
             int greatestProduct = 0;
 
-            // This loops iterates through every single possible combination of 3-digit numbers and multiplays them. 
+            // These loops iterate through every single possible combination of 3-digit numbers and multiplays them. 
             for (int i = 999; i > 99; i--)
             {
+                // Second loop always starts with whatever the value of i is since we have already calculated all the multiplication combinations of the previous i. 
                 for (int j = i; j > 99; j--)
                 {
                     currentProduct = i * j;
 
-                    if (IsItPalendromic(currentProduct) && currentProduct > greatestProduct)
+                    if (IsPalendromic(currentProduct.ToString()) && currentProduct > greatestProduct)
                     {
                         greatestProduct = currentProduct;
                     }
@@ -129,11 +132,14 @@ namespace Project_Euler
             Console.WriteLine($"\n\tSolution: {greatestProduct}");
         }
 
-        private static bool IsItPalendromic(int numberToBeEvaluated)
-        {
-            string number = numberToBeEvaluated.ToString();
+        private static bool IsPalendromic(string number)
+        {           
+            if(string.IsNullOrEmpty(number))
+            {
+                return false;
+            }
 
-            // Comparing each digit by starting from both ends of the number simultaneously.
+            // Comparing each character by starting from both ends of the string simultaneously.
             for (int i = 0, j = number.Length - 1; i < j; i++, j--)
             {
                 if (number[i] != number[j])
