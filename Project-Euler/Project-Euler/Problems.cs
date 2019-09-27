@@ -83,11 +83,6 @@ namespace Project_Euler
                 // If the numberToBeDivided is not divisable by the current diviser anymore but it is not a prime number, we move onto the next diviser.
                 diviser++;
             }
-
-        public static void Problem4()
-        {
-            Console.WriteLine("\n\t1)Find the largest palindrome made from the product of two 3 digit numbers."); 
-            
         }
 
         private static bool IsItDivisible(int diviser, long numberToBeDivided)
@@ -108,6 +103,46 @@ namespace Project_Euler
             }
 
             return true;
-        }  
+        }
+
+        public static void Problem4()
+        {
+            Console.WriteLine("\n\t1)Find the largest palindrome made from the product of two 3 digit numbers.");
+
+            int currentProduct;
+            int greatestProduct = 0;
+
+            // This loops iterates through every single possible combination of 3-digit numbers and multiplays them. 
+            for (int i = 999; i > 99; i--)
+            {
+                for (int j = i; j > 99; j--)
+                {
+                    currentProduct = i * j;
+
+                    if (IsItPalendromic(currentProduct) && currentProduct > greatestProduct)
+                    {
+                        greatestProduct = currentProduct;
+                    }
+                }
+            }
+
+            Console.WriteLine($"\n\tSolution: {greatestProduct}");
+        }
+
+        private static bool IsItPalendromic(int numberToBeEvaluated)
+        {
+            string number = numberToBeEvaluated.ToString();
+
+            // Comparing each digit by starting from both ends of the number simultaneously.
+            for (int i = 0, j = number.Length - 1; i < j; i++, j--)
+            {
+                if (number[i] != number[j])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
