@@ -150,5 +150,36 @@ namespace Project_Euler
 
             return true;
         }
+
+        public static void Problem5()
+        {
+            Console.WriteLine("\n\t5)What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?");
+
+            int evenlyDivisibleNumber = 0;
+
+            for(int i = 20; i < int.MaxValue; i += 20)
+            {
+                if(IsDivisibleFrom1To20(i))
+                {
+                    evenlyDivisibleNumber = i;
+                    break;
+                }
+            }
+
+            Console.WriteLine($"\n\tSolution: {evenlyDivisibleNumber}");
+        }
+
+        private static bool IsDivisibleFrom1To20(int number)
+        {
+            for(int i = 1; i < 21; i++)
+            {
+                if(number % i != 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
