@@ -105,6 +105,50 @@ namespace Project_Euler
             }
 
             return true;
-        }  
+        }
+
+        public static void Problem4()
+        {
+            Console.WriteLine("\n\t1)Find the largest palindrome made from the product of two 3 digit numbers.");
+
+            int currentProduct;
+            int greatestProduct = 0;
+
+            // These loops iterate through every single possible combination of 3-digit numbers and multiplays them. 
+            for (int i = 999; i > 99; i--)
+            {
+                // Second loop always starts with whatever the value of i is since we have already calculated all the multiplication combinations of the previous i. 
+                for (int j = i; j > 99; j--)
+                {
+                    currentProduct = i * j;
+
+                    if (IsPalendromic(currentProduct.ToString()) && currentProduct > greatestProduct)
+                    {
+                        greatestProduct = currentProduct;
+                    }
+                }
+            }
+
+            Console.WriteLine($"\n\tSolution: {greatestProduct}");
+        }
+
+        private static bool IsPalendromic(string characters)
+        {
+            if (string.IsNullOrEmpty(characters))
+            {
+                return false;
+            }
+
+            // Comparing each character by starting from both ends of the string simultaneously.
+            for (int i = 0, j = characters.Length - 1; i < j; i++, j--)
+            {
+                if (characters[i] != characters[j])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
