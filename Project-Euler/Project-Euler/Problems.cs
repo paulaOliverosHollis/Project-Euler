@@ -81,10 +81,10 @@ namespace Project_Euler
                 }
 
                 // If the numberToBeDivided is not divisable by the current diviser anymore but it is not a prime number, we move onto the next diviser.
-                diviser++;
-
-                Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
+                diviser++;                
             }
+
+            Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
         }
 
         private static bool IsItDivisible(int diviser, long numberToBeDivided)
