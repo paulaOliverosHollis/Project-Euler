@@ -55,7 +55,6 @@ namespace Project_Euler
             Console.WriteLine($"\n\tSolution: {sum}");
         }
 
-
         public static void Problem3()
         {
             Console.WriteLine("\n\t3) What is the largest prime factor of the number 600,851,475,143?");
@@ -96,7 +95,6 @@ namespace Project_Euler
         private static bool IsItPrime(long number)
         {
             int squareRoot = (int)Math.Sqrt(number);
-
 
             for (int i = 2; i < squareRoot; i++)
             {
