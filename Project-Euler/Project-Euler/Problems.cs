@@ -81,7 +81,7 @@ namespace Project_Euler
                 }
 
                 // If the numberToBeDivided is not divisable by the current diviser anymore but it is not a prime number, we move onto the next diviser.
-                diviser++;                
+                diviser++;
             }
 
             Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
@@ -132,17 +132,17 @@ namespace Project_Euler
             Console.WriteLine($"\n\tSolution: {greatestProduct}");
         }
 
-        private static bool IsPalendromic(string number)
-        {           
-            if(string.IsNullOrEmpty(number))
+        private static bool IsPalendromic(string characters)
+        {
+            if (string.IsNullOrEmpty(characters))
             {
                 return false;
             }
 
             // Comparing each character by starting from both ends of the string simultaneously.
-            for (int i = 0, j = number.Length - 1; i < j; i++, j--)
+            for (int i = 0, j = characters.Length - 1; i < j; i++, j--)
             {
-                if (number[i] != number[j])
+                if (characters[i] != characters[j])
                 {
                     return false;
                 }
