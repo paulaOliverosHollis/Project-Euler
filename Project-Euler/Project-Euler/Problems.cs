@@ -58,28 +58,55 @@ namespace Project_Euler
 
         public static void Problem3()
         {
-            Console.WriteLine("\n\t3) What is the largest prime factor of the number 600851475143 ?");
+            Console.WriteLine("\n\t3) What is the largest prime factor of the number 600,851,475,143?");
 
-            int smallestPrimeNumber = 2;
-            long biggestPrimeNumber = 600851475143;
+            int diviser = 2;
 
-            while (true)
+            // This number will be divided several times until it cannot be divided by numbers other than 1 and itself, 
+            // which means we have found the biggest prime factor of the initial value.
+            long numberToBeDivided = 600851475143;
+
+            int initialValueSqrt = (int)Math.Sqrt(numberToBeDivided);// A prime factor of a number cannot be larger that the number's square root.
+
+            for (int i = 0; i < initialValueSqrt; i++)
             {
-                while (IsItDivisible(smallestPrimeNumber, biggestPrimeNumber))
+                // The numberToBeDivided is divided by the same diviser for as long as the number is divisible by that specific diviser.
+                while (IsItDivisible(diviser, numberToBeDivided))
                 {
-                    biggestPrimeNumber /= smallestPrimeNumber;
+                    numberToBeDivided /= diviser;
                 }
-                if (IsItPrime(biggestPrimeNumber))
+
+                if (IsItPrime(numberToBeDivided))
                 {
                     break;
                 }
-                else
+
+                // If the numberToBeDivided is not divisable by the current diviser anymore but it is not a prime number, we move onto the next diviser.
+                diviser++;
+            }
+
+            Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
+        }
+
+        private static bool IsItDivisible(int diviser, long numberToBeDivided)
+        {
+            return numberToBeDivided % diviser == 0;
+        }
+
+        private static bool IsItPrime(long number)
+        {
+            int squareRoot = (int)Math.Sqrt(number);
+
+
+            for (int i = 2; i < squareRoot; i++)
+            {
+                if (IsItDivisible(i, number))
                 {
-                    smallestPrimeNumber++;
+                    return false;
                 }
             }
 
-            Console.WriteLine($"\n\tSolution: {biggestPrimeNumber}");
+            return true;
         }
 
         public static void Problem4()
@@ -91,41 +118,18 @@ namespace Project_Euler
         }
 
         //Helper method.
-        private static bool IsItDivisible(int smallestPrimeNumber, long biggestPrimeNumber)
-        {
-            return biggestPrimeNumber % smallestPrimeNumber == 0;
-        }
+        //private static int ReverseOrder(int number)
+        //{
+        //    string currentNumber = number.ToString();
+        //    string reversedNumber = "";
+        //    int currentNumberLength = currentNumber.Length;
 
-        //Helper method.
-        private static bool IsItPrime(long biggestPrimeNumber)
-        {
-            double squareRoot = Math.Sqrt(biggestPrimeNumber);
+        //    for (int i = currentNumberLength - 1; i >= 0; i--)
+        //    {
+        //        reversedNumber += currentNumber[i];
+        //    }
 
-
-            for (int i = 2; i < squareRoot; i++)
-            {
-                if (IsItDivisible(i, biggestPrimeNumber))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        //Helper method.
-        private static int ReverseOrder(int number)
-        {
-            string currentNumber = number.ToString();
-            string reversedNumber = "";
-            int currentNumberLength = currentNumber.Length;
-
-            for(int i = currentNumberLength - 1; i >= 0; i--)
-            {
-                reversedNumber += currentNumber[i];
-            }
-
-            return int.Parse(reversedNumber);
-        }
+        //    return int.Parse(reversedNumber);
+        //}
     }
 }
