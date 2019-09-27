@@ -55,32 +55,34 @@ namespace Project_Euler
             Console.WriteLine($"\n\tSolution: {sum}");
         }
 
-
         public static void Problem3()
         {
-            Console.WriteLine("\n\t3) What is the largest prime factor of the number 600851475143 ?");
+            Console.WriteLine("\n\t3) What is the largest prime factor of the number 600,851,475,143?");
 
-            int smallestPrimeNumber = 2;
-            long biggestPrimeNumber = 600851475143;
+            int diviser = 2;
 
-            while (true)
+            // This number will be divided several times until it cannot be divided by numbers other than 1 and itself, 
+            // which means we have found the biggest prime factor of the initial value.
+            long numberToBeDivided = 600851475143;
+
+            int initialValueSqrt = (int)Math.Sqrt(numberToBeDivided);// A prime factor of a number cannot be larger that the number's square root.
+
+            for (int i = 0; i < initialValueSqrt; i++)
             {
-                while (IsItDivisible(smallestPrimeNumber, biggestPrimeNumber))
+                // The numberToBeDivided is divided by the same diviser for as long as the number is divisible by that specific diviser.
+                while (IsItDivisible(diviser, numberToBeDivided))
                 {
-                    biggestPrimeNumber /= smallestPrimeNumber;
+                    numberToBeDivided /= diviser;
                 }
-                if (IsItPrime(biggestPrimeNumber))
+
+                if (IsItPrime(numberToBeDivided))
                 {
                     break;
                 }
-                else
-                {
-                    smallestPrimeNumber++;
-                }
-            }
 
-            Console.WriteLine($"\n\tSolution: {biggestPrimeNumber}");
-        }
+                // If the numberToBeDivided is not divisable by the current diviser anymore but it is not a prime number, we move onto the next diviser.
+                diviser++;
+            }
 
         public static void Problem4()
         {
@@ -88,21 +90,18 @@ namespace Project_Euler
             
         }
 
-        //Helper method.
-        private static bool IsItDivisible(int smallestPrimeNumber, long biggestPrimeNumber)
+        private static bool IsItDivisible(int diviser, long numberToBeDivided)
         {
-            return biggestPrimeNumber % smallestPrimeNumber == 0;
+            return numberToBeDivided % diviser == 0;
         }
 
-        //Helper method.
-        private static bool IsItPrime(long biggestPrimeNumber)
+        private static bool IsItPrime(long number)
         {
-            double squareRoot = Math.Sqrt(biggestPrimeNumber);
-
+            int squareRoot = (int)Math.Sqrt(number);
 
             for (int i = 2; i < squareRoot; i++)
             {
-                if (IsItDivisible(i, biggestPrimeNumber))
+                if (IsItDivisible(i, number))
                 {
                     return false;
                 }
