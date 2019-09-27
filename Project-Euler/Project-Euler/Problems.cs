@@ -57,7 +57,54 @@ namespace Project_Euler
 
         public static void Problem3()
         {
+            Console.WriteLine("\n\t3) What is the largest prime factor of the number 600,851,475,143?");
 
+            int diviser = 2;
+
+            // This number will be divided several times until it cannot be divided by numbers other than 1 and itself, 
+            // which means we have found the biggest prime factor of the initial value.
+            long numberToBeDivided = 600851475143;
+
+            int initialValueSqrt = (int)Math.Sqrt(numberToBeDivided);// A prime factor of a number cannot be larger that the number's square root.
+
+            for (int i = 0; i < initialValueSqrt; i++)
+            {
+                // The numberToBeDivided is divided by the same diviser for as long as the number is divisible by that specific diviser.
+                while (IsItDivisible(diviser, numberToBeDivided))
+                {
+                    numberToBeDivided /= diviser;
+                }
+
+                if (IsItPrime(numberToBeDivided))
+                {
+                    break;
+                }
+
+                // If the numberToBeDivided is not divisable by the current diviser anymore but it is not a prime number, we move onto the next diviser.
+                diviser++;
+            }
+
+            Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
         }
+
+        private static bool IsItDivisible(int diviser, long numberToBeDivided)
+        {
+            return numberToBeDivided % diviser == 0;
+        }
+
+        private static bool IsItPrime(long number)
+        {
+            int squareRoot = (int)Math.Sqrt(number);
+
+            for (int i = 2; i < squareRoot; i++)
+            {
+                if (IsItDivisible(i, number))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }  
     }
 }
