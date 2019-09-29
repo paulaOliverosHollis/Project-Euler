@@ -104,7 +104,7 @@ namespace Project_Euler
 
         public static void Problem4()
         {
-            Console.WriteLine("\n\t1) Find the largest palindrome made from the product of two 3 digit numbers.");
+            Console.WriteLine("\n\t4) Find the largest palindrome made from the product of two 3 digit numbers.");
 
             int currentProduct;
             int greatestProduct = 0;
@@ -183,10 +183,10 @@ namespace Project_Euler
             for(int i = 1; i < 101; i++)
             {
                 sum += i;
-                sumOfSquares += (int)Math.Pow(i, 2);
+                sumOfSquares += i * i;
             }
 
-            int squareOfSum = (int)Math.Pow(sum, 2);
+            int squareOfSum = sum * sum;
 
             Console.WriteLine($"\n\tSolution: {squareOfSum - sumOfSquares}");
         }
