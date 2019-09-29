@@ -75,7 +75,7 @@ namespace Project_Euler
                     numberToBeDivided /= diviser;
                 }
 
-                if (IsItPrime(numberToBeDivided))
+                if (IsPrime(numberToBeDivided))
                 {
                     break;
                 }
@@ -87,11 +87,11 @@ namespace Project_Euler
             Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
         }
 
-        private static bool IsItPrime(long number)
+        private static bool IsPrime(long number)
         {
-            int squareRoot = (int)Math.Sqrt(number);
+            long squareRoot = (long)Math.Sqrt(number);
 
-            for (int i = 2; i < squareRoot; i++)
+            for (int i = 2; i <= squareRoot; i++)
             {
                 if (number % i == 0)
                 {
@@ -180,7 +180,7 @@ namespace Project_Euler
             int sum = 0;
             int sumOfSquares = 0;
 
-            for(int i = 1; i < 101; i++)
+            for (int i = 1; i < 101; i++)
             {
                 sum += i;
                 sumOfSquares += i * i;
@@ -189,6 +189,26 @@ namespace Project_Euler
             int squareOfSum = sum * sum;
 
             Console.WriteLine($"\n\tSolution: {squareOfSum - sumOfSquares}");
+        }
+
+        public static void Problem7()
+        {
+            Console.WriteLine("\n\t7) What is the 10,001st prime number?");
+
+            long number = 3;
+            int counter = 1; // 2 is already counted.
+
+            while (counter != 10001)
+            {
+                if (IsPrime(number))
+                {
+                    counter++;
+                }
+
+                number += 2;
+            }
+
+            Console.WriteLine($"\n\tSolution: {number - 2}");
         }
     }
 }
