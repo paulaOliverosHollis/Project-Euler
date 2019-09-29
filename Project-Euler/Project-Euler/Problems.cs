@@ -104,7 +104,7 @@ namespace Project_Euler
 
         public static void Problem4()
         {
-            Console.WriteLine("\n\t1)Find the largest palindrome made from the product of two 3 digit numbers.");
+            Console.WriteLine("\n\t4) Find the largest palindrome made from the product of two 3 digit numbers.");
 
             int currentProduct;
             int greatestProduct = 0;
@@ -148,7 +148,7 @@ namespace Project_Euler
 
         public static void Problem5()
         {
-            Console.WriteLine("\n\t5)What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?");
+            Console.WriteLine("\n\t5) What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?");
 
             for (int i = 20; i < int.MaxValue; i += 20)
             {
@@ -171,6 +171,24 @@ namespace Project_Euler
             }
 
             return true;
+        }
+
+        public static void Problem6()
+        {
+            Console.WriteLine("\n\t6) Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.");
+
+            int sum = 0;
+            int sumOfSquares = 0;
+
+            for(int i = 1; i < 101; i++)
+            {
+                sum += i;
+                sumOfSquares += i * i;
+            }
+
+            int squareOfSum = sum * sum;
+
+            Console.WriteLine($"\n\tSolution: {squareOfSum - sumOfSquares}");
         }
     }
 }
