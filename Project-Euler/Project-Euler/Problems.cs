@@ -180,7 +180,7 @@ namespace Project_Euler
             int sum = 0;
             int sumOfSquares = 0;
 
-            for(int i = 1; i < 101; i++)
+            for (int i = 1; i < 101; i++)
             {
                 sum += i;
                 sumOfSquares += (int)Math.Pow(i, 2);
@@ -198,12 +198,12 @@ namespace Project_Euler
             long number = 3;
             int counter = 1; // 2 is already counted.
 
-            while(counter != 10001)
+            while (counter != 10001)
             {
                 if (IsPrime(number))
                 {
-                    counter++;                    
-                }          
+                    counter++;
+                }
 
                 number += 2;
             }
