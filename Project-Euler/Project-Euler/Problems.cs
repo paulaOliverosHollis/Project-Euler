@@ -8,7 +8,7 @@ namespace Project_Euler
 {
     public static class Problems
     {
-        public static void Problem1()
+        public static string Problem1()
         {
             Console.WriteLine("\n\t1) If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000.");
 
@@ -23,10 +23,10 @@ namespace Project_Euler
                 }
             }
 
-            Console.WriteLine($"\n\tSolution: {sum}");
+            return sum.ToString();
         }
 
-        public static void Problem2()
+        public static string Problem2()
         {
             Console.WriteLine("\n\t2) By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.");
 
@@ -52,10 +52,10 @@ namespace Project_Euler
                 secondNum = thirdNum;
             }
 
-            Console.WriteLine($"\n\tSolution: {sum}");
+            return sum.ToString();
         }
 
-        public static void Problem3()
+        public static string Problem3()
         {
             Console.WriteLine("\n\t3) What is the largest prime factor of the number 600,851,475,143?");
 
@@ -84,10 +84,10 @@ namespace Project_Euler
                 diviser++;
             }
 
-            Console.WriteLine($"\n\tSolution: {numberToBeDivided}");
-        }       
+            return numberToBeDivided.ToString();
+        }
 
-        public static void Problem4()
+        public static string Problem4()
         {
             Console.WriteLine("\n\t4) Find the largest palindrome made from the product of two 3 digit numbers.");
 
@@ -109,10 +109,10 @@ namespace Project_Euler
                 }
             }
 
-            Console.WriteLine($"\n\tSolution: {greatestProduct}");
-        }        
+            return greatestProduct.ToString();
+        }
 
-        public static void Problem5()
+        public static string Problem5()
         {
             Console.WriteLine("\n\t5) What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?");
 
@@ -120,13 +120,14 @@ namespace Project_Euler
             {
                 if (MathyHelper.IsDivisibleFrom1To20(i))
                 {
-                    Console.WriteLine($"\n\tSolution: {i}");
-                    return;
+                    return i.ToString();
                 }
             }
-        }       
 
-        public static void Problem6()
+            return "Unable to find the answer.";
+        }
+
+        public static string Problem6()
         {
             Console.WriteLine("\n\t6) Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.");
 
@@ -141,10 +142,10 @@ namespace Project_Euler
 
             int squareOfSum = sum * sum;
 
-            Console.WriteLine($"\n\tSolution: {squareOfSum - sumOfSquares}");
+            return (squareOfSum - sumOfSquares).ToString();
         }
 
-        public static void Problem7()
+        public static string Problem7()
         {
             Console.WriteLine("\n\t7) What is the 10,001st prime number?");
 
@@ -161,7 +162,7 @@ namespace Project_Euler
                 number += 2;
             }
 
-            Console.WriteLine($"\n\tSolution: {number - 2}");
+            return (number - 2).ToString();
         }
     }
 }

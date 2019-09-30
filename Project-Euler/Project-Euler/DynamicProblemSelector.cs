@@ -14,7 +14,21 @@ namespace Project_Euler
 
             if (method != null)
             {
-                method.Invoke(null, null);
+                DateTime startTime = DateTime.Now;
+
+                object obj = method.Invoke(null, null);
+
+                if(obj != null && obj is string answer)
+                {
+                    Console.WriteLine($"\n\t\tAnswer: {answer}");
+                    Console.WriteLine($"\n\t\tIt took {DateTime.Now - startTime} to find the answer to this problem.\n\n\tPress <Enter> if you wish to continue...");
+                }
+                else
+                {
+                    Console.WriteLine("\n\t\tAn error occurred and we were unable to find the answer to this problem.\n\n\tPress <Enter> if you wish to continue...");                    
+                }
+               
+                Console.ReadLine();
             }
             else
             {
