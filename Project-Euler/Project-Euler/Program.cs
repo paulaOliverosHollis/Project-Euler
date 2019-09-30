@@ -72,8 +72,8 @@ namespace Project_Euler
         private static void PrintMenuOptions()
         {
             Console.WriteLine("\n\n\tSelect One Of The Following Options:\n" +
-                              "\n\tA - See All Problems and Solutions" +
-                              "\n\tS - See One Specific Problem and Solution" +
+                              "\n\tA - See All Problems and Answers" +
+                              "\n\tS - See One Specific Problem and Answer" +
                               "\n\tQ - Quit");
         }
 
