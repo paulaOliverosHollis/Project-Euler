@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace Project_Euler
 {
-    class MathyHelper
+    public class MathyHelper
     {
         public static bool IsPrime(long number)
         {
             long squareRoot = (long)Math.Sqrt(number);
 
-            for (int i = 2; i <= squareRoot; i++)
+            if (number % 2 == 0)
+            {
+                return false;
+            }
+
+            for (int i = 3; i <= squareRoot; i += 2)
             {
                 if (number % i == 0)
                 {
@@ -31,9 +36,9 @@ namespace Project_Euler
             }
 
             // Comparing each character by starting from both ends of the string simultaneously.
-            for (int i = 0, j = characters.Length - 1; i < j; i++, j--)
+            for (int frontPointer = 0, backPointer = characters.Length - 1; frontPointer < backPointer; frontPointer++, backPointer--)
             {
-                if (characters[i] != characters[j])
+                if (characters[frontPointer] != characters[backPointer])
                 {
                     return false;
                 }
@@ -42,8 +47,11 @@ namespace Project_Euler
             return true;
         }
 
+        // For  performance purposes, this method does not accept more generic parameters such as a range of numbers to check. 
         public static bool IsDivisibleFrom1To20(int number)
         {
+            // We do not check divisivility by any number under 11 since we are already checking 
+            // divisibility by 12, 14, 15, 16, 18 and 20 which will provide us with the answer we need.
             for (int i = 11; i < 21; i++)
             {
                 if (number % i != 0)
