@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicProblemSelector.cs" />
+    <Compile Include="MathyHelper.cs" />
     <Compile Include="Problems.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
