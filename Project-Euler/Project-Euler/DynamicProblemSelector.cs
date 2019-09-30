@@ -17,7 +17,7 @@ namespace Project_Euler
                 DateTime startTime = DateTime.Now;
 
                 object obj = method.Invoke(null, null);
-
+                 
                 if(obj != null && obj is string answer)
                 {
                     Console.WriteLine($"\n\t\tAnswer: {answer}");
