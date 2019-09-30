@@ -16,7 +16,7 @@ namespace Project_Euler
             {
                 return false;
             }
-
+            // Since the only even prime number is 2 and we've already checked that, we only check for odd numbers in the following loop. 
             for (int i = 3; i <= squareRoot; i += 2)
             {
                 if (number % i == 0)
@@ -50,8 +50,7 @@ namespace Project_Euler
         // For  performance purposes, this method does not accept more generic parameters such as a range of numbers to check. 
         public static bool IsDivisibleFrom1To20(int number)
         {
-            // We do not check divisivility by any number under 11 since we are already checking 
-            // divisibility by 12, 14, 15, 16, 18 and 20 which will provide us with the answer we need.
+            // We do not check divisibility by numbers from 1 through 10 since said numbers are divisers of numbers between 11 through 20.            
             for (int i = 11; i < 21; i++)
             {
                 if (number % i != 0)
