@@ -10,12 +10,18 @@ namespace Project_Euler
     {
         public static bool IsPrime(long number)
         {
-            long squareRoot = (long)Math.Sqrt(number);
+            if (number == 2)
+            {
+                return true;
+            }
 
-            if (number % 2 == 0)
+            if (number < 2 || number % 2 == 0)
             {
                 return false;
-            }
+            }           
+
+            long squareRoot = (long)Math.Sqrt(number);
+
             // Since the only even prime number is 2 and we've already checked that, we only check for odd numbers in the following loop. 
             for (int i = 3; i <= squareRoot; i += 2)
             {
