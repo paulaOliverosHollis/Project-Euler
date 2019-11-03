@@ -192,12 +192,18 @@ namespace Project_Euler
                                 "71636269561882670428252483600823257530420752963450";
 
             BigInteger biggestProduct = 0;
-
-            for(int i = 0; i < bigInteger.Length - 13; i++)
+            
+            for (int i = 0; i < bigInteger.Length - 13; i++)
             {
-                BigInteger tempProduct = (int)bigInteger[i] * (int)bigInteger[i + 1] * (int)bigInteger[i + 2] * (int)bigInteger[i + 3] * (int)bigInteger[i + 4] * (int)bigInteger[i + 5] * (int)bigInteger[i + 6] * (int)bigInteger[i + 7] * (int)bigInteger[i + 8] * (int)bigInteger[i + 9] * (int)bigInteger[i + 10] * (int)bigInteger[i + 11] * (int)bigInteger[i + 12];
+                BigInteger tempProduct = 1;
 
-                if(tempProduct > biggestProduct)
+                for (int j = 0; j <= 12; j++)
+                {
+                    // Each character needs to be converted into a string and then an int in order to avoid executing the operation with the unicode value of each char.
+                    tempProduct *= Convert.ToInt32(bigInteger[i + j].ToString());
+                }
+
+                if (tempProduct > biggestProduct)
                 {
                     biggestProduct = tempProduct;
                 }
