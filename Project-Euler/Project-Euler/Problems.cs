@@ -234,7 +234,23 @@ namespace Project_Euler
                 new List<int>() {63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31}, 
                 new List<int>() {04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23}};
 
-            return "answer";
+           
+            return maxSum.ToString();
         }
+
+        public static int FindBiggestSum(int triangleIndex, int lineIndex, List<List<int>> triangle)
+        {
+            if (triangleIndex == triangle.Count - 1)
+            {
+                return maxSum;
+            }
+            maxSum = 0;
+           
+            FindBiggestSum(triangleIndex + 1, lineIndex, triangle);
+
+            FindBiggestSum(triangleIndex + 1, lineIndex + 1, triangle);
+        }
+
+
     }
 }
